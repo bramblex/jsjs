@@ -1,0 +1,16 @@
+{
+  "name": "hot-update",
+  "version": "v0.0.1",
+  "scripts": {
+    "dev": "./node_modules/.bin/webpack --watch"
+  },
+  "dependencies": {
+    "@types/estree": "^0.0.38",
+    "acorn": "^5.4.1",
+    "awesome-typescript-loader": "^3.4.1",
+    "source-map-loader": "^0.2.3",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.2",
+    "webpack": "^3.11.0"
+  }
+}
