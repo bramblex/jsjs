@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/lib/interpreter.js",
+            "program": "${workspaceFolder}/lib/test.js",
             "sourceMaps": true
         }
     ]
