@@ -1,5 +1,5 @@
 {
-  "name": "hot-update",
+  "name": "jsjs",
   "version": "v0.0.1",
   "scripts": {
     "dev": "./node_modules/.bin/webpack --watch"

@@ -1,6 +1,6 @@
 
 import * as ESTree from 'estree'
-import Scope from './scope'
+import { Scope } from './scope'
 
 export interface NodeTypeMap {
     Identifier: ESTree.Identifier
@@ -72,7 +72,7 @@ export interface NodeTypeMap {
 }
 
 export type EvaluateMap = {
-    [key in ESTree.Node['type']]: (node: NodeTypeMap[key], scope: Scope) => any
+    [key in ESTree.Node['type']]: (node: NodeTypeMap[key], scope: Scope, arg?: any) => any
 }
 
-export type EvaluateFunc = (node: ESTree.Node, scope: Scope) => any
+export type EvaluateFunc = (node: ESTree.Node, scope: Scope, arg?: any) => any

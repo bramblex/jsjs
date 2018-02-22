@@ -6,7 +6,8 @@
     "strict": true,
     "alwaysStrict": true,
     "noImplicitAny": false,
-    "sourceMap": true
+    "sourceMap": true,
+    "noImplicitThis": false
   },
   "include": [
     "src/**/*.ts"

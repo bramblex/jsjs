@@ -3,17 +3,18 @@ export type ScopeType = 'function' | 'loop' | 'switch' | 'block'
 
 export type Kind = 'const' | 'var' | 'let'
 
-export class Var {
+export interface Var {
+  $get(): any
+  $set(value: any): boolean
+}
+
+export class ScopeVar implements Var {
   value: any
   kind: Kind
 
   constructor(kind: Kind, value: any) {
-    this.kind = kind
     this.value = value
-  }
-
-  $get(): any {
-    return this.value
+    this.kind = kind
   }
 
   $set(value: any): boolean {
@@ -24,11 +25,30 @@ export class Var {
       return true
     }
   }
+
+  $get(): any {
+    return this.value
+  }
 }
 
-export default class Scope {
+export class PropVar implements Var {
+  object: any
+  property: string
+
+  constructor(object: any, property: string) {
+    this.object = object
+    this.property = property
+  }
+
+  $set(value: any) { this.object[this.property] = value; return true }
+  $get() { return this.object[this.property] }
+  $delete() { delete this.object[this.property] }
+}
+
+export class Scope {
   private content: { [key: string]: Var }
   private parent: Scope | null
+  private prefix: string = '@'
 
   readonly type: ScopeType
 
@@ -41,17 +61,19 @@ export default class Scope {
     this.invasived = false
   }
 
-  $find(name: string): Var | null {
+  $find(raw_name: string): Var | null {
+    const name = this.prefix + raw_name
     if (this.content.hasOwnProperty(name)) {
       return this.content[name]
     } else if (this.parent) {
-      return this.parent.$find(name)
+      return this.parent.$find(raw_name)
     } else {
       return null
     }
   }
 
-  $let(name: string, value: any): boolean {
+  $let(raw_name: string, value: any): boolean {
+    const name = this.prefix + raw_name
     const $var = this.content[name]
     if (!$var) {
       this.content[name] = new Var('let', value) 
@@ -59,7 +81,8 @@ export default class Scope {
     } else { return false }
   }
 
-  $const(name: string, value: any): boolean { 
+  $const(raw_name: string, value: any): boolean { 
+    const name = this.prefix + raw_name
     const $var = this.content[name]
     if (!$var) {
       this.content[name] = new Var('const', value) 
@@ -67,7 +90,8 @@ export default class Scope {
     } else { return false }
   }
 
-  $var(name: string, value: any): boolean {
+  $var(raw_name: string, value: any): boolean {
+    const name = this.prefix + raw_name
     let scope: Scope = this
 
     while (scope.parent !== null && scope.type !== 'function') {
@@ -82,11 +106,11 @@ export default class Scope {
   }
 
 
-  $declar(kind: Kind, name: string, value: any): boolean {
+  $declar(kind: Kind, raw_name: string, value: any): boolean {
     return ({
-      'var': () => this.$var(name, value),
-      'let': () => this.$let(name, value),
-      'const': () => this.$const(name, value)
+      'var': () => this.$var(raw_name, value),
+      'let': () => this.$let(raw_name, value),
+      'const': () => this.$const(raw_name, value)
     })[kind]()
   }
 }

@@ -4,8 +4,8 @@ const webpack = require('webpack')
 module.exports = {
   target: 'node',
   entry: { 
-    'interpreter' : './src/main.ts',
-    'test' : './src/test.ts',
+    'interpreter': './src/main.ts',
+    'test': './src/test.ts',
   },
   output: {
     filename: '[name].js',
