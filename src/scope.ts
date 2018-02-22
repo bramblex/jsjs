@@ -76,7 +76,7 @@ export class Scope {
     const name = this.prefix + raw_name
     const $var = this.content[name]
     if (!$var) {
-      this.content[name] = new Var('let', value) 
+      this.content[name] = new ScopeVar('let', value) 
       return true
     } else { return false }
   }
@@ -85,7 +85,7 @@ export class Scope {
     const name = this.prefix + raw_name
     const $var = this.content[name]
     if (!$var) {
-      this.content[name] = new Var('const', value) 
+      this.content[name] = new ScopeVar('const', value) 
       return true
     } else { return false }
   }
@@ -100,7 +100,7 @@ export class Scope {
 
     const $var = scope.content[name]
     if (!$var) {
-      this.content[name] = new Var('var', value) 
+      this.content[name] = new ScopeVar('var', value) 
       return true
     } else { return false }
   }

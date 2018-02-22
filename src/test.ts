@@ -13,4 +13,4 @@ const interpreter_code = fs.readFileSync('./lib/interpreter.js', 'utf-8')
 const bootstrap = interpreter.run(interpreter_code)
 
 // 自举的解释器实行 hello world
-bootstrap.run(` console.log('hello world!')`)
+bootstrap.run(`console.log('hello world!')`)
