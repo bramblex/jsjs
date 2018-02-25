@@ -6,6 +6,7 @@ export type Kind = 'const' | 'var' | 'let'
 export interface Var {
   $get(): any
   $set(value: any): boolean
+  // $call($this: any, args: Array<any>): any
 }
 
 export class ScopeVar implements Var {
