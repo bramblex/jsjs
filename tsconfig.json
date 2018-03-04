@@ -4,8 +4,6 @@
     "module": "commonjs",
     "strictNullChecks": true,
     "strict": true,
-    "alwaysStrict": true,
-    "noImplicitAny": false,
     "sourceMap": true,
     "noImplicitThis": false
   },

@@ -2,13 +2,39 @@
 import * as ESTree from 'estree'
 import { Scope } from './scope'
 
+export interface ExpressNodeTypeMap {
+    Identifier: ESTree.Identifier
+    Literal: ESTree.Literal
+    FunctionExpression: ESTree.FunctionExpression
+    ArrowFunctionExpression: ESTree.ArrowFunctionExpression
+    ThisExpression: ESTree.ThisExpression
+    ArrayExpression: ESTree.ArrayExpression
+    ObjectExpression: ESTree.ObjectExpression
+    YieldExpression: ESTree.YieldExpression
+    UnaryExpression: ESTree.UnaryExpression
+    UpdateExpression: ESTree.UpdateExpression
+    BinaryExpression: ESTree.BinaryExpression
+    AssignmentExpression: ESTree.AssignmentExpression
+    LogicalExpression: ESTree.LogicalExpression
+    MemberExpression: ESTree.MemberExpression
+    ConditionalExpression: ESTree.ConditionalExpression
+    CallExpression: ESTree.CallExpression
+    NewExpression: ESTree.NewExpression
+    SequenceExpression: ESTree.SequenceExpression
+    TemplateLiteral: ESTree.TemplateLiteral
+    TaggedTemplateExpression: ESTree.TaggedTemplateExpression
+    ClassExpression: ESTree.ClassExpression
+    AwaitExpression: ESTree.AwaitExpression
+}
+
 export interface NodeTypeMap {
     Identifier: ESTree.Identifier
     Literal: ESTree.Literal
-    Program: ESTree.Program
-    FunctionDeclaration: ESTree.FunctionDeclaration
     FunctionExpression: ESTree.FunctionExpression
     ArrowFunctionExpression: ESTree.ArrowFunctionExpression
+
+    Program: ESTree.Program
+    FunctionDeclaration: ESTree.FunctionDeclaration
     SwitchCase: ESTree.SwitchCase
     CatchClause: ESTree.CatchClause
     VariableDeclarator: ESTree.VariableDeclarator
@@ -32,6 +58,7 @@ export interface NodeTypeMap {
     ForOfStatement: ESTree.ForOfStatement
     VariableDeclaration: ESTree.VariableDeclaration
     ClassDeclaration: ESTree.ClassDeclaration
+
     ThisExpression: ESTree.ThisExpression
     ArrayExpression: ESTree.ArrayExpression
     ObjectExpression: ESTree.ObjectExpression
@@ -49,8 +76,9 @@ export interface NodeTypeMap {
     TemplateLiteral: ESTree.TemplateLiteral
     TaggedTemplateExpression: ESTree.TaggedTemplateExpression
     ClassExpression: ESTree.ClassExpression
-    MetaProperty: ESTree.MetaProperty
     AwaitExpression: ESTree.AwaitExpression
+
+    MetaProperty: ESTree.MetaProperty
     Property: ESTree.Property
     Super: ESTree.Super
     TemplateElement: ESTree.TemplateElement

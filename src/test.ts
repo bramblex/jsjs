@@ -7,7 +7,7 @@ import * as interpreter from './main'
 interpreter.run(`console.log('hello world')`)
 
 // 自举解释器代码
-declare const require, __dirname
+declare const require: (name: string) => any, __dirname: string
 const fs = require('fs')
 const interpreter_code = fs.readFileSync('./lib/interpreter.js', 'utf-8')
 const bootstrap = interpreter.run(interpreter_code)
